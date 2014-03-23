@@ -19,6 +19,7 @@ namespace WaveApp
         private event Action changeAbonentsData;
         private event Action changeEventsData;
         private event Action changeObjectStructureData;
+        private SQLMasterForm sqlMasterForm = null;
         private AppNavigator navigateForm = null;
         private AbonentsForm abonentsForm = null;
         private Boolean active = false;
@@ -30,6 +31,14 @@ namespace WaveApp
             DockState defaultDockState;
             FieldInfo fi;
             defaultDockState = DockState.Unknown;
+            //Создание формы мастера запросов
+            sqlMasterForm = new SQLMasterForm();
+            sqlMasterForm.Tag = "#sqlMasterForm";
+            fi = sqlMasterForm.GetType().GetField("lastDockState", BindingFlags.IgnoreCase | BindingFlags.NonPublic | BindingFlags.Instance);
+            if (fi != null)
+                defaultDockState = (DockState)fi.GetValue(sqlMasterForm);
+            defaultDockState = defaultDockState == DockState.Unknown ? DockState.DockLeft : defaultDockState;
+            sqlMasterForm.Show(dockContainerStudio, defaultDockState);
             //Создание навигационной формы проекта 
             navigateForm = new AppNavigator();
             navigateForm.Tag = "$struct_project";
@@ -37,6 +46,7 @@ namespace WaveApp
             //navigateForm.DockStateChanged += new EventHandler(dockedPanel_DockStateChanged);
             //navigateForm.inspectTreeView.Click += new EventHandler(TreeView_Click);
             //navigateForm.OnEditTreePoint += new EventHandler(this.docreateEditor);
+
             fi = navigateForm.GetType().GetField("lastDockState", BindingFlags.IgnoreCase | BindingFlags.NonPublic | BindingFlags.Instance);
             if (fi != null)
                 defaultDockState = (DockState)fi.GetValue(navigateForm);
@@ -59,29 +69,7 @@ namespace WaveApp
             
             
         }
-        /// <summary>
-        /// Метод рассылки события
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="evnt"></param>
-        protected void NotifyEvent(Object obj, Action evnt)
-        {
-            //Инициализируем список подписки на событие
-            if (evnt != null)
-            {
-                Delegate[] invkList = evnt.GetInvocationList();
-                IEnumerator ie = invkList.GetEnumerator();
-                while (ie.MoveNext())
-                {
-                    Action handler = (Action)ie.Current;
-                    try { IAsyncResult res = handler.BeginInvoke(null,obj); }
-                    catch (Exception exc)
-                    {
-                        //evnt -= handler;
-                    }
-                }
-            }
-        }
+        
         
         /// <summary>
         /// Проверка обновления данных и формирование событий на обновление данных в формах
@@ -99,9 +87,9 @@ namespace WaveApp
                     //формируем запрос
                     if (lastUpdate == DateTime.MinValue)
                     {
-                        NotifyEvent(this, changeObjectStructureData);
-                        NotifyEvent(this, changeAbonentsData);
-                        NotifyEvent(this, changeAbonentsData);
+                        changeObjectStructureData.Invoke();
+                        changeAbonentsData.Invoke();
+                        
                         lastUpdate = DateTime.Now;
                     } else
                     using (NpgsqlCommand sqlQuery = new NpgsqlCommand("SELECT * FROM public.update_tbl_log WHERE event_time >= " + lastUpdate + ";", npgSqlConnection))
@@ -111,7 +99,7 @@ namespace WaveApp
                         while (reader.Read())
                         {
                             if ("abonents".Equals(Convert.ToString(reader["tbl_name"]).ToLower().Trim()))
-                                NotifyEvent(this, changeAbonentsData);
+                                changeAbonentsData.Invoke();
 
                         }
                     }
