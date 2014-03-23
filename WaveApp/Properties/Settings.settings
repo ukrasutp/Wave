@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WaveApp.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DBHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="SystemJournalName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">wave</Value>
+    </Setting>
+    <Setting Name="DBName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Wave</Value>
+    </Setting>
+    <Setting Name="DBUser" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">postgres</Value>
+    </Setting>
+    <Setting Name="DBPassWord" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Attiz092006</Value>
+    </Setting>
+    <Setting Name="DBPort" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">5432</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
