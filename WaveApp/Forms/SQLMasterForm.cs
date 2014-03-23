@@ -14,12 +14,16 @@ namespace WaveApp.Forms
     {
         private int selectedPage = 0;
         private List<TabPage> pages = new List<TabPage>();
+        public StringBuilder SQLText = new StringBuilder();
         public SQLMasterForm()
         {
             InitializeComponent();
             pages.Add(tabPage1);
             pages.Add(tabPage2);
             pages.Add(tabPage3);
+            btNext.Enabled = (selectedPage < pages.Count - 1);
+            bPrevios.Enabled = (selectedPage > 0);
+            bReady.Enabled = (selectedPage == pages.Count - 1);
         }
         private void setSelectedPage(int index)
         {
@@ -69,6 +73,7 @@ namespace WaveApp.Forms
             this.setSelectedPage(selectedPage);
             btNext.Enabled = (selectedPage < pages.Count - 1);
             bPrevios.Enabled = (selectedPage > 0);
+            bReady.Enabled = (selectedPage == pages.Count - 1);
         }
 
         private void bPrevios_Click(object sender, EventArgs e)
@@ -79,6 +84,39 @@ namespace WaveApp.Forms
             this.setSelectedPage(selectedPage);
             bPrevios.Enabled = (selectedPage > 0);
             btNext.Enabled = (selectedPage < pages.Count - 1);
+            bReady.Enabled = (selectedPage == pages.Count - 1);
+        }
+
+        private void bReady_Click(object sender, EventArgs e)
+        {
+            selectedPage = 0;
+            this.setSelectedPage(selectedPage);
+            SQLText.Clear();
+            SQLText.Append("SELECT id, description, number_trading_floor, number_sector, number_module ");
+            SQLText.Append("WHERE ");
+            
+            if (!chkbAllMarketplace.Checked)
+                foreach (TreeNode node in tVMarketPlace.Nodes)
+                {
+                    
+                    if ((node.Level == 0) && (node.ImageIndex == 0))
+                    {
+                        SQLText.Append("( number_trading_floor = "+node.Tag.ToString());
+                        foreach (TreeNode sectionNode in node.Nodes)
+                        {
+                            if (sectionNode.ImageIndex == 0)
+                                SQLText.Append(" AND number_section = "+sectionNode.Tag.ToString());
+
+                        }
+                            SQLText.Append(")");
+                        }
+                }
+                
+        }
+
+        private void tVMarketPlace_DoubleClick(object sender, EventArgs e)
+        {
+            
         }
     }
 }

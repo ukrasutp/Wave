@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ImageList iLMPTreeView;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SQLMasterForm));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Сектор A");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Сектор B");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Сектор C");
@@ -123,6 +126,7 @@
             this.bReady = new System.Windows.Forms.Button();
             this.bPrevios = new System.Windows.Forms.Button();
             this.btNext = new System.Windows.Forms.Button();
+            iLMPTreeView = new System.Windows.Forms.ImageList(this.components);
             this.panel2.SuspendLayout();
             this.tCMasterPages.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -135,6 +139,12 @@
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // iLMPTreeView
+            // 
+            iLMPTreeView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iLMPTreeView.ImageStream")));
+            iLMPTreeView.TransparentColor = System.Drawing.Color.Transparent;
+            iLMPTreeView.Images.SetKeyName(0, "Check_green.bmp");
             // 
             // panel2
             // 
@@ -280,6 +290,7 @@
             treeNode40});
             this.tVMarketPlace.Size = new System.Drawing.Size(1032, 464);
             this.tVMarketPlace.TabIndex = 4;
+            this.tVMarketPlace.DoubleClick += new System.EventHandler(this.tVMarketPlace_DoubleClick);
             // 
             // panel3
             // 
@@ -434,6 +445,7 @@
             this.bReady.TabIndex = 5;
             this.bReady.Text = "Готово";
             this.bReady.UseVisualStyleBackColor = true;
+            this.bReady.Click += new System.EventHandler(this.bReady_Click);
             // 
             // bPrevios
             // 
