@@ -1,0 +1,1 @@
+regsvr32 /s D:\Projects\C#\AutomationMagic\IncludedDll\ChartActiveX.ocx /i
