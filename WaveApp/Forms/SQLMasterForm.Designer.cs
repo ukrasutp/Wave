@@ -103,6 +103,10 @@
             treeNode37,
             treeNode38,
             treeNode39});
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.bReady = new System.Windows.Forms.Button();
+            this.bPrevios = new System.Windows.Forms.Button();
+            this.btNext = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tCMasterPages = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -122,11 +126,8 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.bReady = new System.Windows.Forms.Button();
-            this.bPrevios = new System.Windows.Forms.Button();
-            this.btNext = new System.Windows.Forms.Button();
             iLMPTreeView = new System.Windows.Forms.ImageList(this.components);
+            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tCMasterPages.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -137,7 +138,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dGVAbonents)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // iLMPTreeView
@@ -145,6 +145,48 @@
             iLMPTreeView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("iLMPTreeView.ImageStream")));
             iLMPTreeView.TransparentColor = System.Drawing.Color.Transparent;
             iLMPTreeView.Images.SetKeyName(0, "Check_green.bmp");
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.bReady);
+            this.panel1.Controls.Add(this.bPrevios);
+            this.panel1.Controls.Add(this.btNext);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 478);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1052, 53);
+            this.panel1.TabIndex = 2;
+            // 
+            // bReady
+            // 
+            this.bReady.Location = new System.Drawing.Point(174, 13);
+            this.bReady.Name = "bReady";
+            this.bReady.Size = new System.Drawing.Size(75, 23);
+            this.bReady.TabIndex = 5;
+            this.bReady.Text = "Готово";
+            this.bReady.UseVisualStyleBackColor = true;
+            this.bReady.Click += new System.EventHandler(this.bReady_Click);
+            // 
+            // bPrevios
+            // 
+            this.bPrevios.Location = new System.Drawing.Point(12, 13);
+            this.bPrevios.Name = "bPrevios";
+            this.bPrevios.Size = new System.Drawing.Size(75, 23);
+            this.bPrevios.TabIndex = 4;
+            this.bPrevios.Text = "<<Назад";
+            this.bPrevios.UseVisualStyleBackColor = true;
+            this.bPrevios.Click += new System.EventHandler(this.bPrevios_Click);
+            // 
+            // btNext
+            // 
+            this.btNext.Location = new System.Drawing.Point(93, 13);
+            this.btNext.Name = "btNext";
+            this.btNext.Size = new System.Drawing.Size(75, 23);
+            this.btNext.TabIndex = 3;
+            this.btNext.Text = "Вперед>>";
+            this.btNext.UseVisualStyleBackColor = true;
+            this.btNext.Click += new System.EventHandler(this.btNext_Click_1);
             // 
             // panel2
             // 
@@ -425,48 +467,6 @@
             this.checkBox2.Text = "Выбрать все";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.bReady);
-            this.panel1.Controls.Add(this.bPrevios);
-            this.panel1.Controls.Add(this.btNext);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 478);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1052, 53);
-            this.panel1.TabIndex = 2;
-            // 
-            // bReady
-            // 
-            this.bReady.Location = new System.Drawing.Point(174, 13);
-            this.bReady.Name = "bReady";
-            this.bReady.Size = new System.Drawing.Size(75, 23);
-            this.bReady.TabIndex = 5;
-            this.bReady.Text = "Готово";
-            this.bReady.UseVisualStyleBackColor = true;
-            this.bReady.Click += new System.EventHandler(this.bReady_Click);
-            // 
-            // bPrevios
-            // 
-            this.bPrevios.Location = new System.Drawing.Point(12, 13);
-            this.bPrevios.Name = "bPrevios";
-            this.bPrevios.Size = new System.Drawing.Size(75, 23);
-            this.bPrevios.TabIndex = 4;
-            this.bPrevios.Text = "<<Назад";
-            this.bPrevios.UseVisualStyleBackColor = true;
-            this.bPrevios.Click += new System.EventHandler(this.bPrevios_Click);
-            // 
-            // btNext
-            // 
-            this.btNext.Location = new System.Drawing.Point(93, 13);
-            this.btNext.Name = "btNext";
-            this.btNext.Size = new System.Drawing.Size(75, 23);
-            this.btNext.TabIndex = 3;
-            this.btNext.Text = "Вперед>>";
-            this.btNext.UseVisualStyleBackColor = true;
-            this.btNext.Click += new System.EventHandler(this.btNext_Click_1);
-            // 
             // SQLMasterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,9 +475,11 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "SQLMasterForm";
-            this.Text = "SQLMasterForm";
+            this.Text = "Мастер построения запросов";
+            this.ToolTipText = "Мастер построения запросов";
             this.Activated += new System.EventHandler(this.SQLMasterForm_Activated);
             this.Shown += new System.EventHandler(this.SQLMasterForm_Shown);
+            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.tCMasterPages.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -491,7 +493,6 @@
             this.tabPage3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -69,8 +69,8 @@ namespace WaveApp
             
             
         }
-        
-        
+
+       
         /// <summary>
         /// Проверка обновления данных и формирование событий на обновление данных в формах
         /// </summary>
@@ -151,6 +151,16 @@ namespace WaveApp
         {
             active = true;
             updateAppThread.Start();
+        }
+
+        private void Exit_ToolStripButton_Click(object sender, EventArgs e)
+        {
+            Exit();
+        }
+        public void Exit()
+        {
+            if (MessageBox.Show("Выйти из приложения?", "Подтвердите", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                Close();
         }
     }
 }

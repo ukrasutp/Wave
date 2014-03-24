@@ -18,7 +18,7 @@ using System.Xml.Linq;
 using System.Xml.Schema;
 using System.Xml;
 
-namespace SBAEI.DB
+namespace WaveApp.DB
 {
     /// <summary>
     /// Класс обобщает методы работы с БД АИС СОАИ
